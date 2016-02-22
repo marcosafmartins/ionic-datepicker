@@ -7,7 +7,7 @@
 
       <div class="center datepicker-balanced-light">
         <div class="row">
-          <div class="col datepicker-month-js datepicker-month" ng-click="datepickerCtrl.changeType('month')">
+          <div class="col datepicker-month-js datepicker-month" ng-click="scroll('.datepicker-month-content-js'); datepickerCtrl.changeType('month')">
             {{datepickerCtrl.getSelectedMonth() | limitTo: 3 | uppercase}}
           </div>
         </div>
@@ -19,7 +19,7 @@
         </div>
 
         <div class="row">
-          <div class="col datepicker-year-js datepicker-year" ng-click="datepickerCtrl.changeType('year')">
+          <div class="col datepicker-year-js datepicker-year" ng-click="scroll('.datepicker-year-content-js'); datepickerCtrl.changeType('year')">
             {{datepickerCtrl.selectedDate | date: 'yyyy'}}
           </div>
         </div>

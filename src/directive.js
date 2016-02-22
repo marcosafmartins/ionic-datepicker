@@ -4,7 +4,7 @@
 
   angular
   .module('ionic-datepicker')
-  .directive('ionicDatepicker', [ '$ionicModal', function ($ionicModal) {
+  .directive('ionicDatepicker', [ '$ionicModal', function ($ionicModal, $location, $ionicScrollDelegate) {
 
     return {
       restrict: 'E',
@@ -19,13 +19,20 @@
       },
       link: function (scope, element, attrs, controller) {
 
-        var scroll = function(el) {
-          var $$container = $(el)
-            , $$element   = $(el + ' .datepicker-selected')
-            , offset      = $$element.offset().top + $$container.scrollTop() - $$container.offset().top - ($$container.height() / 2);
-          if (offset === 0) return;
-          $$container.animate({ scrollTop: offset });
-        };
+        // var scroll = function(el) {
+        //   var $$container = $(el)
+        //     , $$element   = $(el + ' .datepicker-selected')
+        //     , offset      = $$element.offset().top + $$container.scrollTop() - $$container.offset().top - ($$container.height() / 2);
+        //   if (offset === 0) return;
+        //   $$container.animate({ scrollTop: offset });
+        // };
+
+        scope.scroll = function(el) {
+
+          $location.hash(el);
+          $ionicScrollDelegate.anchorScroll();
+
+        }
 
         scope.show = function(modal) {
 
@@ -33,10 +40,11 @@
           controller.initialize();
           scope.modal.show();
 
-          $('.datepicker-month-js').on('click', function() { scroll('.datepicker-month-content-js'); });
-          $('.datepicker-year-js').on('click', function() { scroll('.datepicker-year-content-js'); });
+          // $('.datepicker-month-js').on('click', function() { scroll('.datepicker-month-content-js'); });
+          // $('.datepicker-year-js').on('click', function() { scroll('.datepicker-year-content-js'); });
           // $('.datepicker-cancel-js').on('click', scope.onCancel);
           // $('.datepicker-ok-js').on('click', scope.onDone);
+
         };
 
         scope.onCancel = function() {
